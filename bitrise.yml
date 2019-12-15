@@ -19,7 +19,7 @@ workflows:
 
             ssh-add secrets/id_rsa
 
-            gcloud auth activate-service-account faster-linx --key-file secrets/western-dolphin.json
+            gcloud auth activate-service-account --key-file secrets/western-dolphin.json
 
             gcloud auth configure-docker
 
