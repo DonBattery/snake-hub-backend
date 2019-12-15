@@ -23,7 +23,7 @@ workflows:
 
             gcloud auth configure-docker
 
-            envman addd --key DOCKER_HOST --value "ssh://deploy-admin@34.89.246.67"
+            envman add --key DOCKER_HOST --value "ssh://deploy-admin@34.89.246.67"
     - script@1.1.5:
         title: Docker build, tag and push
         inputs:
