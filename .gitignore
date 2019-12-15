@@ -1,0 +1,6 @@
+secrets
+.bitrise.secrets.yml
+snake-hub-config.yaml
+tdd.sh
+change.sh
+.vscode

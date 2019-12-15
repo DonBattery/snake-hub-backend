@@ -1,0 +1,39 @@
+format_version: "8"
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+project_type: other
+trigger_map:
+- push_branch: '*'
+  workflow: push-to-gcp
+- pull_request_source_branch: '*'
+  workflow: push-to-gcp
+workflows:
+  push-to-gcp:
+    steps:
+    - script@1.1.5:
+        title: set gcloud as docker credential helper
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -ex
+
+            ssh-add secrets/id_rsa
+
+            gcloud auth activate-service-account faster-linx --key-file secrets/western-dolphin.json
+
+            gcloud auth configure-docker
+
+            envman addd --key DOCKER_HOST --value "ssh://deploy-admin@34.89.246.67"
+    - script@1.1.5:
+        title: Docker build, tag and push
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+
+            set -ex
+
+            docker build -t snake-hub .
+
+            docker tag snake-hub eu.gcr.io/faster-linx/snake-hub
+
+            docker push eu.gcr.io/faster-linx/snake-hub
