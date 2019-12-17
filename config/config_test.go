@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/donbattery/snake-hub-backend/config"
+	"github.com/spf13/cobra"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -15,9 +16,9 @@ func TestConfig(t *testing.T) {
 
 }
 
-func TestSetup(t *testing.T) {
+func TestInit(t *testing.T) {
 	c := config.New()
 
-	assert.NoError(t, c.Setup(nil, nil), "Setup should not return any errors")
+	assert.NoError(t, c.Init(&cobra.Command{}, []string{}), "Init should not return any errors")
 
 }
