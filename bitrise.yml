@@ -34,7 +34,7 @@ workflows:
 
             docker build -t snake-hub .
 
-            docker tag snake-hub "eu.gcr.io/faster-linx/snake-hub:${BITRISE_BUILD_NUMBER}"
+            docker tag snake-hub "eu.gcr.io/faster-linx/snake-hub"
 
             docker push eu.gcr.io/faster-linx/snake-hub
   ci:
