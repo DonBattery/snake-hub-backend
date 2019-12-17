@@ -37,7 +37,7 @@ func setupAndRunServer(cmd *cobra.Command, args []string) error {
 	if err := conf.Init(cmd, args); err != nil {
 		return errors.Wrap(err, "Failed to set up configurations")
 	}
-	log.WithField("PORT", viper.GetInt("port")).Info("HTTP Server listening")
+	log.WithField("PORT", viper.GetInt("port")).Info("Snake-hub backend listening")
 	if err := server.Start(); err != nil {
 		return errors.Wrap(err, "The HTTP server exited with an error")
 	}
